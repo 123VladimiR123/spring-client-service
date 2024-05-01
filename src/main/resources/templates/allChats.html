@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Чаты</title>
+</head>
+<body>
+  <header>
+    <div>
+      <a th:href="@{${prefix + '/profile/' + current.getId()}}">
+        <span>Я</span>
+      </a>
+    </div>
+    <div>
+      <a th:href="@{${prefix + '/profile'}}">
+        <span>Люди</span>
+      </a>
+    </div>
+    <div>
+      <a th:href="@{${prefix + '/chat'}}">
+        <span>Чаты</span>
+      </a>
+    </div>
+    <div>
+      <a th:href="@{${prefix + '/logout'}}">
+        <span>Выход</span>
+      </a>
+    </div>
+  </header>
+
+  <div>
+    <ul>
+      <li th:each="chat: ${page}">
+        <div>
+          <a th:href="@{${prefix + '/profile/' + names.get(chat.getId()).getId()}}">
+            <span th:text="${names.get(chat.getId()).getFullName()}">
+            </span>
+            <span th:text="${chat.getLastMessage()}">
+            </span>
+          </a>
+        </div>
+      </li>
+    </ul>
+    <div th:if="${query < page.getTotalElements()}">
+      <a th:href="@{${prefix + '/chat?q=' + Integer.toString(query + 20)}}">
+        <span>Загрузить еще</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${requested.getSurname() + ' ' + requested.getName()}"></title>
+</head>
+<body>
+    <header>
+        <div>
+            <a th:href="@{${prefix + '/profile/' + current.getId()}}">
+                <span>Я</span>
+            </a>
+        </div>
+        <div>
+            <a th:href="@{${prefix + '/profile'}}">
+                <span>
+                    Люди
+                </span>
+            </a>
+        </div>
+        <div>
+            <a th:href="@{${prefix + '/chat'}}">
+                <span>Чаты</span>
+            </a>
+        </div>
+        <div>
+            <a th:href="@{${prefix + '/logout'}}">
+                <span>Выход</span>
+            </a>
+        </div>
+    </header>
+
+    <div>
+        <div>
+            <span th:text="${requested.getFullName()}"></span>
+            <span th:text="${Math.round(requested.getRate() * 100) / 100.0}"></span>
+            <a th:if="${!self}" th:href="@{${prefix + '/chat?to=' + requested.getId()}}">
+                <span>
+                    Чат
+                </span>
+            </a>
+        </div>
+
+        <div th:if="${canComment}">
+            <form method="post">
+                <input type="range" name="rate" min="1" max="5" step="1" value="5" />
+                <input type="text" name="message" placeholder="Оставьте свой комментарий" minlength="15" maxlength="255" required/>
+                <input type="submit"/>
+            </form>
+        </div>
+
+        <div>
+            <ul>
+                <li th:each="comment : ${comments}">
+                    <a th:href="@{${prefix + '/profile/' + comment.getOwnersId()}}">
+                        <span th:text="${names.get(comment.getOwnersId())}"></span>
+                    </a>
+                    <input type="range" max="5" min="0" th:value="${comment.getRate()}" disabled/>
+                    <span th:text="${comment.getSent()}"></span>
+                    <div>
+                        <span th:text="${comment.getMessage()}" ></span>
+                    </div>
+                </li>
+            </ul>
+            <div th:if="${totalComments > query}">
+                <a th:href="@{${prefix + '/profile/' + requested.getId() + '?q=' + Integer.toString(query + 10)}}">
+                    <span>Загрузить ещё комментарии</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

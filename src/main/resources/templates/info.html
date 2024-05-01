@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About You</title>
+</head>
+<body>
+    <div th:if="${#vars.containsKey('error')}">
+        <span>Упс, поля должны состоять только из кириллицы и быть от 2 до 30 символов.</span>
+    </div>
+
+    <div>
+        <form method="get" th:if="${#vars.containsKey('profile')}">
+            <label>
+                <span>Имя</span>
+                <input type="text" disabled th:value="${profile.getName()}" />
+            </label>
+            <label>
+                <span>Фамилия</span>
+                <input type="text" disabled th:value="${profile.getSurname()}" />
+            </label>
+            <label>
+                <span>Отчество</span>
+                <input type="text" disabled th:value="${profile.getMidName()}" />
+            </label>
+        </form>
+
+        <form method="post" th:unless="${#vars.containsKey('profile')}">
+            <label>
+                <span>Имя</span>
+                <input type="text" required name="name" placeholder="Иван"/>
+            </label>
+            <label>
+                <span>Фамилия</span>
+                <input type="text" required name="surname" placeholder="Иванов"/>
+            </label>
+            <label>
+                <span>Отчество</span>
+                <input type="text" required name="midName" placeholder="Иванович"/>
+            </label>
+            <input type="submit" value="Отправить" />
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>People</title>
+</head>
+<body>
+  <header>
+    <div>
+      <a th:href="@{${prefix + '/profile/' + current.getId()}}">
+        <span>Я</span>
+      </a>
+    </div>
+    <div>
+      <a th:href="@{${prefix + '/profile'}}">
+        <span>Люди</span>
+      </a>
+    </div>
+    <div>
+      <a th:href="@{${prefix + '/chat'}}">
+        <span>Чаты</span>
+      </a>
+    </div>
+    <div>
+      <a th:href="@{${prefix + '/logout'}}">
+        <span>Выход</span>
+      </a>
+    </div>
+  </header>
+
+  <div>
+    <ul>
+      <li th:each="one : ${peoplePage.getContent()}">
+        <div>
+          <a th:href="@{${prefix + '/' + one.getId()}}">
+            <span th:text="${one.getFullName()}"></span>
+            <input type="range" disabled max="5" min="0" th:value="${one.getRate()}">
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <div th:if="${peoplePage.getTotalElements() > query}">
+        <a th:href="@{${prefix + '/profile?q=' + Integer.toString(query + 20)}}">
+          <span>Загрузить ещё</span>
+        </a>
+    </div>
+  </div>
+
+</body>
+</html>

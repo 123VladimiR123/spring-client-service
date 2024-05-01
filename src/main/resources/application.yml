@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: clients
+
+  profiles:
+    active: dev
+
+  config:
+    import: configserver:http://${CONFIG_SERVER_ADDRESS}
+
+  cloud:
+    config:
+      fail-fast: true
+
+  devtools:
+    add-properties: false
