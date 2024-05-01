@@ -34,7 +34,7 @@
     <ul>
       <li th:each="one : ${peoplePage.getContent()}">
         <div>
-          <a th:href="@{${prefix + '/' + one.getId()}}">
+          <a th:href="@{${prefix + '/profile/' + one.getId()}}">
             <span th:text="${one.getFullName()}"></span>
             <input type="range" disabled max="5" min="0" th:value="${one.getRate()}">
           </a>
