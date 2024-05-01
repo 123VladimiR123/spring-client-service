@@ -10,5 +10,5 @@ import java.util.List;
 public interface ChatRepository extends MongoRepository<ChatEntity, String> {
 
     ChatEntity findByParticipationsId(List<String> list);
-    Page<ChatEntity> findAllByParticipationsIdContainingAndLastMessageNotEmpty(String id, Pageable pageable);
+    Page<ChatEntity> findAllByParticipationsIdContainsAndLastMessageNotNull(String participationsId, Pageable pageable);
 }

@@ -34,7 +34,7 @@
     <ul>
       <li th:each="chat: ${page}">
         <div>
-          <a th:href="@{${prefix + '/profile/' + names.get(chat.getId()).getId()}}">
+          <a th:href="@{${prefix + '/chat/' + chat.getId()}}">
             <span th:text="${names.get(chat.getId()).getFullName()}">
             </span>
             <span th:text="${chat.getLastMessage()}">

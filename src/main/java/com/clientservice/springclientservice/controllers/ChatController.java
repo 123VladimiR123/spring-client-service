@@ -23,10 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -50,11 +47,17 @@ public class ChatController {
         ProfileEntity current = profileRepository.findByEmail(request.getHeader("email"));
         ProfileEntity requested = profileRepository.findById(id).get();
 
-        ChatEntity chat = chatRepository.findByParticipationsId(List.of(current.getId(), requested.getId()));
+
+        ArrayList<String> list = new ArrayList(2);
+        list.add(current.getId());
+        list.add(requested.getId());
+        Collections.sort(list);
+
+        ChatEntity chat = chatRepository.findByParticipationsId(list);
         if (chat == null) {
             chat = chatRepository.save(ChatEntity.builder()
                     .id("chat-" + UUID.randomUUID())
-                    .participationsId(List.of(requested.getId(), current.getId()))
+                    .participationsId(list)
                     .lastMessage(null)
                     .build());
         }
@@ -69,6 +72,11 @@ public class ChatController {
                             @PathVariable("chatId") String id,
                             @Valid @ModelAttribute("message") MessageDTO dto) throws IOException {
         ChatEntity chat = chatRepository.findById(id).get();
+        ProfileEntity profile = profileRepository.findByEmail(request.getHeader("email"));
+
+        if (!chat.getParticipationsId().contains(profile.getId()))
+            throw new AccessDeniedException("You are not in this chat");
+
         MessageEntity msg = messageMapper.dtoToEntity(dto, request, id);
 
         chat.setLastMessage(msg.getSent());
@@ -92,7 +100,7 @@ public class ChatController {
 
         ModelAndView modelAndView = new ModelAndView("chat");
         Page<MessageEntity> messageEntityPage = messageRepository.findAllByChatId(chatId,
-                PageRequest.of(0, query, Sort.by("sent").descending()));
+                PageRequest.of(0, query, Sort.by("sent").ascending()));
 
 
         modelAndView.addObject("current", current);
@@ -113,7 +121,7 @@ public class ChatController {
         ProfileEntity current = profileRepository.findByEmail(request.getHeader("email"));
 
         ModelAndView allChats = new ModelAndView("allChats");
-        Page<ChatEntity> chatEntities = chatRepository.findAllByParticipationsIdContainingAndLastMessageNotEmpty(request.getHeader("email"),
+        Page<ChatEntity> chatEntities = chatRepository.findAllByParticipationsIdContainsAndLastMessageNotNull(current.getId(),
                 PageRequest.of(0, query, Sort.by("lastMessage").descending()));
 
         Map<String, ProfileEntity> map = chatEntities.getContent().stream().collect(Collectors.toMap(e -> e.getId(),
