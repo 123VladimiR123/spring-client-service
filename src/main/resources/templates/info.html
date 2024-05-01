@@ -7,12 +7,8 @@
     <title>About You</title>
 </head>
 <body>
-    <div th:if="${#vars.containsKey('error')}">
-        <span>Упс, поля должны состоять только из кириллицы и быть от 2 до 30 символов.</span>
-    </div>
-
     <div>
-        <form method="get" th:if="${#vars.containsKey('profile')}">
+        <form method="get" th:if="${profile != null}">
             <label>
                 <span>Имя</span>
                 <input type="text" disabled th:value="${profile.getName()}" />
@@ -27,7 +23,7 @@
             </label>
         </form>
 
-        <form method="post" th:unless="${#vars.containsKey('profile')}">
+        <form method="post" th:unless="${profile != null}">
             <label>
                 <span>Имя</span>
                 <input type="text" required name="name" placeholder="Иван"/>
