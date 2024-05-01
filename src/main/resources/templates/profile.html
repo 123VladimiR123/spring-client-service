@@ -36,7 +36,7 @@
         <div>
             <span th:text="${requested.getFullName()}"></span>
             <span th:text="${Math.round(requested.getRate() * 100) / 100.0}"></span>
-            <a th:if="${!self}" th:href="@{${prefix + '/chat?to=' + requested.getId()}}">
+            <a th:if="${!self}" th:href="@{${prefix + '/chat/to-' + requested.getId()}}">
                 <span>
                     Чат
                 </span>

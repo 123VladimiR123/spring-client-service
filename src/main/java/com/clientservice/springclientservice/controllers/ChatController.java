@@ -41,11 +41,11 @@ public class ChatController {
     private final ProfileRepository profileRepository;
     private final MessageMapper messageMapper;
 
-    @GetMapping
+    @GetMapping("/to-{id}")
     @ResponseBody
     public void chatToUser(HttpServletResponse response,
                            HttpServletRequest request,
-                           @RequestParam("to") String id) throws IOException {
+                           @PathVariable("id") String id) throws IOException {
 
         ProfileEntity current = profileRepository.findByEmail(request.getHeader("email"));
         ProfileEntity requested = profileRepository.findById(id).get();
