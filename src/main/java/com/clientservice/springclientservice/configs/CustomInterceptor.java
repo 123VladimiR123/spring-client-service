@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import java.util.Arrays;
-
-
 @Service
 @RequiredArgsConstructor
 public class CustomInterceptor implements HandlerInterceptor {
@@ -24,6 +21,9 @@ public class CustomInterceptor implements HandlerInterceptor {
         if (repository.findByEmail(request.getHeader("email")) != null) {
             return true;
         }
+        if (request.getRequestURI().equals("/info"))
+            return true;
+
         response.sendRedirect(prefix + "/info");
         return false;
     }
