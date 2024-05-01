@@ -85,14 +85,15 @@ public class ChatController {
                                 HttpServletRequest request) throws AccessDeniedException {
 
         ChatEntity chat = chatRepository.findById(chatId).get();
-        if (!chat.getParticipationsId().contains(request.getHeader("email")))
+        ProfileEntity current =  profileRepository.findByEmail(request.getHeader("email"));
+
+        if (!chat.getParticipationsId().contains(current.getId()))
             throw new AccessDeniedException("You are not in this chat");
 
         ModelAndView modelAndView = new ModelAndView("chat");
         Page<MessageEntity> messageEntityPage = messageRepository.findAllByChatId(chatId,
                 PageRequest.of(0, query, Sort.by("sent").descending()));
 
-        ProfileEntity current =  profileRepository.findById(request.getHeader("email")).get();
 
         modelAndView.addObject("current", current);
         modelAndView.addObject("requested", profileRepository.findById(chat.getParticipationsId().stream()
