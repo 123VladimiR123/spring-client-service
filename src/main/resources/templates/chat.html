@@ -43,14 +43,14 @@
     </div>
 
     <div>
-        <a th:href="@{${prefix + '/chat/' + chatId + '?q=' + Integer.toString(query + 20)}}" th:if="${query < page.getTotalElements()}" class="plus">
+        <a th:href="@{${prefix + '/chat/' + chatId + '?q=' + queryplus}}" th:if="${query < page.getTotalElements()}" class="plus">
             <span>
                 Загрузить ещё
             </span>
         </a>
 
         <ul class="messagelist">
-            <li th:each="msg: ${page.getContent()}" class="fromme">
+            <li th:each="msg: ${page.getContent()}" th:attr="class=${current.getId().equals(msg.getFromId()) ? 'fromanother' : 'fromme'}">
                 <div th:text="${msg.getMessage()}" class="messagetext">тест сообщение
                 </div>
                 <span th:text="${msg.getSent()}" class="date">тестдата</span>

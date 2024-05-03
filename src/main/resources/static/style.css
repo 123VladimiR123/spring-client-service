@@ -158,6 +158,7 @@ header > div > a >span {
 
 .messagelist {
     display: flex;
+    flex-direction: column;
     list-style-type: none;
     padding: 0;
 }

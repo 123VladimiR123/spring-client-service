@@ -69,7 +69,7 @@
                 </li>
             </ul>
             <div th:if="${totalComments > query}">
-                <a th:href="@{${prefix + '/profile/' + requested.getId() + '?q=' + Integer.toString(query + 10)}}" class="plus">
+                <a th:href="@{${prefix + '/profile/' + requested.getId() + '?q=' + queryplus}}" class="plus">
                     <span>Загрузить ещё комментарии</span>
                 </a>
             </div>

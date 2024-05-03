@@ -65,6 +65,7 @@ public class ProfileController {
         modelAndView.addObject("totalComments", commentEntityPage.getTotalElements());
         modelAndView.addObject("comments", commentEntityPage.getContent());
         modelAndView.addObject("query", page);
+        modelAndView.addObject("queryplus", Integer.toString(page + 10));
         modelAndView.addObject("names", names);
         modelAndView.addObject("canComment", !(requestedProfile.getId().equals(currentProfile.getId()) ||
                 commentsRepository.existsByToProfileIdAndOwnersId(id, currentProfile.getId())));

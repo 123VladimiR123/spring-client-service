@@ -47,7 +47,7 @@
     </ul>
 
     <div th:if="${peoplePage.getTotalElements() > query}">
-        <a th:href="@{${prefix + '/profile?q=' + Integer.toString(query + 20)}}" class="plus">
+        <a th:href="@{${prefix + '/profile?q=' + queryplus}}" class="plus">
           <span>Загрузить ещё</span>
         </a>
     </div>

@@ -24,7 +24,7 @@ public class PeopleController {
     private final ProfileRepository profileRepository;
 
     @GetMapping
-    public ModelAndView getPeople(@RequestParam(name = "q", required = false, defaultValue = "20") Integer query,
+    public ModelAndView getPeople(@RequestParam(name = "q", required = false, defaultValue = "10") Integer query,
                                   HttpServletRequest request) {
         Page<ProfileEntity> entities = profileRepository.findAll(
                 PageRequest.of(0, query, Sort.by("rate").descending()));
@@ -36,6 +36,7 @@ public class PeopleController {
         modelAndView.addObject("current", current);
         modelAndView.addObject("prefix", prefix);
         modelAndView.addObject("query", query);
+        modelAndView.addObject("queryplus", Integer.toString(query + 10));
 
         return modelAndView;
     }

@@ -89,7 +89,7 @@ public class ChatController {
 
     @GetMapping("/{chatId}")
     public ModelAndView getChat(@PathVariable("chatId") String chatId,
-                                @RequestParam(value = "q", required = false, defaultValue = "20") Integer query,
+                                @RequestParam(value = "q", required = false, defaultValue = "10") Integer query,
                                 HttpServletRequest request) throws AccessDeniedException {
 
         ChatEntity chat = chatRepository.findById(chatId).get();
@@ -108,6 +108,7 @@ public class ChatController {
                 .filter(e -> !e.equals(current.getId())).findFirst().get()).get());
         modelAndView.addObject("page", messageEntityPage);
         modelAndView.addObject("query", query);
+        modelAndView.addObject("queryplus", Integer.toString(query + 10));
         modelAndView.addObject("prefix", prefix);
         modelAndView.addObject("chatId", chatId);
 
@@ -117,7 +118,7 @@ public class ChatController {
     @GetMapping
     public ModelAndView getChats(HttpServletRequest request,
                                  HttpServletResponse response,
-                                 @RequestParam(value = "q", required = false, defaultValue = "20") Integer query) {
+                                 @RequestParam(value = "q", required = false, defaultValue = "10") Integer query) {
         ProfileEntity current = profileRepository.findByEmail(request.getHeader("email"));
 
         ModelAndView allChats = new ModelAndView("allChats");
@@ -128,6 +129,7 @@ public class ChatController {
                 e -> profileRepository.findById(e.getParticipationsId().stream().filter(f -> !f.equals(current.getId())).findFirst().get()).get()));
 
         allChats.addObject("query", query);
+        allChats.addObject("queryplus", Integer.toString(query + 10));
         allChats.addObject("current", current);
         allChats.addObject("page", chatEntities);
         allChats.addObject("names", map);

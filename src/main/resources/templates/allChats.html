@@ -46,7 +46,7 @@
       </li>
     </ul>
     <div th:if="${query < page.getTotalElements()}">
-      <a th:href="@{${prefix + '/chat?q=' + Integer.toString(query + 20)}}" class="plus">
+      <a th:href="@{${prefix + '/chat?q=' + queryplus}}" class="plus">
         <span>Загрузить еще</span>
       </a>
     </div>
