@@ -43,23 +43,23 @@ header > div > a >span {
 }
 
 .myprofile {
-    background-image: url("icons/icon-self.png");
+    background-image: url("static/icons/icon-self.png");
 } 
 
 .people {
-    background-image: url("icons/icon-people.png");
+    background-image: url("static/icons/icon-people.png");
 }
 
 .chats {
-    background-image: url("icons/icon-chats.png");
+    background-image: url("static/icons/icon-chats.png");
 }
 
 .logout {
-    background-image: url("icons/icon-logout.png");
+    background-image: url("static/icons/icon-logout.png");
 }
 
 .logo{
-    background-image: url("icons/logo.png");
+    background-image: url("static/icons/logo.png");
     background-size: 100%;
     background-repeat: no-repeat;
     position: fixed;
@@ -89,7 +89,6 @@ header > div > a >span {
     height: 100%;
     text-align: right;
     font-style: italic;
-    align-content: bottom;
     opacity: 70%;
 }
 
@@ -121,7 +120,7 @@ header > div > a >span {
     display: block;
     height: 60px;
     width: 60px;
-    background-image: url("icons/plus.png");
+    background-image: url("static/icons/plus.png");
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -288,13 +287,13 @@ form > label {
     display: inline-block;
     height: auto;
     width: 13%;
-    margin: 0px, auto;
+    margin: 0px auto;
 }
 
 .userchat {
     margin-top: 20px;
     vertical-align: top;
-    background-image: url("/icons/message.png");
+    background-image: url("/static/icons/message.png");
     background-repeat: no-repeat;
     background-position: top;
     height: 100%;
