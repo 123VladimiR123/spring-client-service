@@ -24,6 +24,9 @@ public class CustomInterceptor implements HandlerInterceptor {
         if (request.getRequestURI().equals("/info"))
             return true;
 
+        if (request.getRequestURI().equals("/static/style.css") || request.getRequestURI().equals("/static/all.css") || request.getRequestURI().startsWith("/static/icons"))
+            return true;
+
         response.sendRedirect(prefix + "/info");
         return false;
     }
