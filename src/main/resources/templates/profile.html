@@ -4,39 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="all.css">
     <title th:text="${requested.getSurname() + ' ' + requested.getName()}"></title>
 </head>
 <body>
+    <div class="logo">
+    </div>
     <header>
-        <div>
-            <a th:href="@{${prefix + '/profile/' + current.getId()}}">
-                <span>Я</span>
-            </a>
-        </div>
-        <div>
-            <a th:href="@{${prefix + '/profile'}}">
-                <span>
-                    Люди
-                </span>
-            </a>
-        </div>
-        <div>
-            <a th:href="@{${prefix + '/chat'}}">
-                <span>Чаты</span>
-            </a>
-        </div>
-        <div>
-            <a th:href="@{${prefix + '/logout'}}">
-                <span>Выход</span>
-            </a>
-        </div>
+      <div class="headerlink myprofile">
+        <a th:href="@{${prefix + '/profile/' + current.getId()}}">
+          <span>Я</span>
+        </a>
+      </div>
+      <div class="headerlink people">
+        <a th:href="@{${prefix + '/profile'}}">
+          <span>Люди</span>
+        </a>
+      </div>
+      <div class="headerlink chats">
+        <a th:href="@{${prefix + '/chat'}}">
+          <span>Чаты</span>
+        </a>
+      </div>
+      <div class="headerlink logout">
+        <a th:href="@{${prefix + '/logout'}}">
+          <span>Выход</span>
+        </a>
+      </div>
     </header>
 
-    <div>
-        <div>
-            <span th:text="${requested.getFullName()}"></span>
-            <span th:text="${requested.getRate()}"></span>
-            <a th:if="${!self}" th:href="@{${prefix + '/chat/to-' + requested.getId()}}">
+    <div class="totaldiv">
+        <div class="profilehead" style="margin-bottom: 10px;">
+            <span th:text="${requested.getFullName()}" class="username">имя пользователя</span>
+            <span th:text="${requested.getRate()}" class="splitblock" style="font-style: italic;">оценОчька</span>
+            <a th:if="${!self}" th:href="@{${prefix + '/chat/to-' + requested.getId()}}" class="splitblock userchat">
                 <span>
                     Чат
                 </span>
@@ -44,28 +46,30 @@
         </div>
 
         <div th:if="${canComment}">
-            <form method="post">
-                <input type="range" name="rate" min="1" max="5" step="1" value="5" />
-                <input type="text" name="message" placeholder="Оставьте свой комментарий" minlength="15" maxlength="255" required/>
-                <input type="submit"/>
+            <form method="post" class="infoform formborder" style="width: 100%; margin: 10px 0px; padding: 10px 0px;">
+                <input type="text" name="message" placeholder="Оставьте свой комментарий" minlength="15" maxlength="255" required class="textfield" style="width: 95%;"/>
+                <input type="range" name="rate" min="1" max="5" step="1" value="5" class="profilerange" />
+                <input type="submit" class="buttoninfo" value="Отправить отзыв!" style="margin: auto;"/>
             </form>
         </div>
 
         <div>
-            <ul>
-                <li th:each="comment : ${comments}">
-                    <a th:href="@{${prefix + '/profile/' + comment.getOwnersId()}}">
-                        <span th:text="${names.get(comment.getOwnersId())}"></span>
+            <ul class="messagelist" style="flex-direction: column;">
+                <li th:each="comment : ${comments}" class="fromme commentent">
+                    <a th:href="@{${prefix + '/profile/' + comment.getOwnersId()}}" class="username">
+                        <span th:text="${names.get(comment.getOwnersId())}">
+                            имя комментируемого для теста
+                        </span>
                     </a>
                     <input type="range" max="5" min="0" th:value="${comment.getRate()}" disabled/>
-                    <span th:text="${comment.getSent()}"></span>
                     <div>
-                        <span th:text="${comment.getMessage()}" ></span>
+                        <span th:text="${comment.getMessage()}" class="commentmsg"> сообщение из комента</span>
                     </div>
+                    <span th:text="${comment.getSent()}" class="date">тест дата</span>
                 </li>
             </ul>
             <div th:if="${totalComments > query}">
-                <a th:href="@{${prefix + '/profile/' + requested.getId() + '?q=' + Integer.toString(query + 10)}}">
+                <a th:href="@{${prefix + '/profile/' + requested.getId() + '?q=' + Integer.toString(query + 10)}}" class="plus">
                     <span>Загрузить ещё комментарии</span>
                 </a>
             </div>

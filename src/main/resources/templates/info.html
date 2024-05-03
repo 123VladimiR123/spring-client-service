@@ -4,39 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About You</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="all.css">
 </head>
 <body>
+    <body>
+        <div class="logo">
+        </div>
+        <header>
+          <div class="headerlink myprofile">
+            <a th:href="@{${prefix + '/profile/'}}">
+              <span>Я</span>
+            </a>
+          </div>
+          <div class="headerlink people">
+            <a th:href="@{${prefix + '/profile'}}">
+              <span>Люди</span>
+            </a>
+          </div>
+          <div class="headerlink chats">
+            <a th:href="@{${prefix + '/chat'}}">
+              <span>Чаты</span>
+            </a>
+          </div>
+          <div class="headerlink logout">
+            <a th:href="@{${prefix + '/logout'}}">
+              <span>Выход</span>
+            </a>
+          </div>
+        </header>
     <div>
-        <form method="get" th:if="${profile != null}">
-            <label>
+        <form method="get" th:if="${profile != null}" class="infoform">
+            <label for="name">
                 <span>Имя</span>
-                <input type="text" disabled th:value="${profile.getName()}" />
             </label>
-            <label>
+            <input type="text" name="name" disabled th:value="${profile.getName()}" class="textfield"/>
+            
+            <label for="surname">
                 <span>Фамилия</span>
-                <input type="text" disabled th:value="${profile.getSurname()}" />
             </label>
-            <label>
+            <input type="text" name="surname" disabled th:value="${profile.getSurname()}" class="textfield"/>
+            
+            <label for="midName">
                 <span>Отчество</span>
-                <input type="text" disabled th:value="${profile.getMidName()}" />
             </label>
+            <input type="text" name="midName" disabled th:value="${profile.getMidName()}" class="textfield" />
         </form>
 
-        <form method="post" th:unless="${profile != null}">
-            <label>
+        <form method="post" th:unless="${profile != null}" class="infoform">
+            <label for="name">
                 <span>Имя</span>
-                <input type="text" required name="name" placeholder="Иван"/>
             </label>
-            <label>
+            <input type="text" required name="name" placeholder="Иван" class="textfield"/>
+
+            <label for="surname">
                 <span>Фамилия</span>
-                <input type="text" required name="surname" placeholder="Иванов"/>
             </label>
-            <label>
+                <input type="text" required name="surname" placeholder="Иванов" class="textfield"/>
+
+            <label for="midName">
                 <span>Отчество</span>
-                <input type="text" required name="midName" placeholder="Иванович"/>
             </label>
-            <input type="submit" value="Отправить" />
+                <input type="text" required name="midName" placeholder="Иванович" class="textfield"/>
+
+            <input type="submit" value="Начнём!" class="buttoninfo"/>
         </form>
     </div>
 </body>

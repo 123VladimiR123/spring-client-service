@@ -4,26 +4,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="all.css">
   <title>Чаты</title>
 </head>
 <body>
+  <div class="logo">
+  </div>
   <header>
-    <div>
+    <div class="headerlink myprofile">
       <a th:href="@{${prefix + '/profile/' + current.getId()}}">
         <span>Я</span>
       </a>
     </div>
-    <div>
+    <div class="headerlink people">
       <a th:href="@{${prefix + '/profile'}}">
         <span>Люди</span>
       </a>
     </div>
-    <div>
+    <div class="headerlink chats">
       <a th:href="@{${prefix + '/chat'}}">
         <span>Чаты</span>
       </a>
     </div>
-    <div>
+    <div class="headerlink logout">
       <a th:href="@{${prefix + '/logout'}}">
         <span>Выход</span>
       </a>
@@ -31,20 +35,18 @@
   </header>
 
   <div>
-    <ul>
-      <li th:each="chat: ${page}">
-        <div>
-          <a th:href="@{${prefix + '/chat/' + chat.getId()}}">
-            <span th:text="${names.get(chat.getId()).getFullName()}">
-            </span>
-            <span th:text="${chat.getLastMessage()}">
-            </span>
-          </a>
-        </div>
+    <ul class="listmessages">
+      <li th:each="chat: ${page}" class="listitem">
+        <a th:href="@{${prefix + '/chat/' + chat.getId()}}" class="divorlink">
+          <span th:text="${names.get(chat.getId()).getFullName()}" class="username">Имя пользователя/чата
+          </span>
+          <span th:text="${chat.getLastMessage()}" class="date">тест дата
+          </span>
+        </a>
       </li>
     </ul>
     <div th:if="${query < page.getTotalElements()}">
-      <a th:href="@{${prefix + '/chat?q=' + Integer.toString(query + 20)}}">
+      <a th:href="@{${prefix + '/chat?q=' + Integer.toString(query + 20)}}" class="plus">
         <span>Загрузить еще</span>
       </a>
     </div>

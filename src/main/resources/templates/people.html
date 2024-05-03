@@ -4,26 +4,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="all.css">
   <title>People</title>
 </head>
 <body>
+  <div class="logo">
+  </div>
   <header>
-    <div>
+    <div class="headerlink myprofile">
       <a th:href="@{${prefix + '/profile/' + current.getId()}}">
         <span>Я</span>
       </a>
     </div>
-    <div>
+    <div class="headerlink people">
       <a th:href="@{${prefix + '/profile'}}">
         <span>Люди</span>
       </a>
     </div>
-    <div>
+    <div class="headerlink chats">
       <a th:href="@{${prefix + '/chat'}}">
         <span>Чаты</span>
       </a>
     </div>
-    <div>
+    <div class="headerlink logout">
       <a th:href="@{${prefix + '/logout'}}">
         <span>Выход</span>
       </a>
@@ -31,19 +35,19 @@
   </header>
 
   <div>
-    <ul>
-      <li th:each="one : ${peoplePage.getContent()}">
-        <div>
-          <a th:href="@{${prefix + '/profile/' + one.getId()}}">
-            <span th:text="${one.getFullName()}"></span>
-            <input type="range" disabled max="5" min="0" th:value="${one.getRate()}">
+    <ul class="messagelist full" style="flex-direction: column;">
+      <li th:each="one : ${peoplePage.getContent()}" class="chatusername" style="margin: 10px 0px;">
+        <div style="height: 100%;">
+          <a th:href="@{${prefix + '/profile/' + one.getId()}}" class="username" style="width: 100%;">
+            <span th:text="${one.getFullName()}">имя для теста</span>
+            <input type="range" disabled max="5" min="0" th:value="${one.getRate()}" style="float: right;">
           </a>
         </div>
       </li>
     </ul>
 
     <div th:if="${peoplePage.getTotalElements() > query}">
-        <a th:href="@{${prefix + '/profile?q=' + Integer.toString(query + 20)}}">
+        <a th:href="@{${prefix + '/profile?q=' + Integer.toString(query + 20)}}" class="plus">
           <span>Загрузить ещё</span>
         </a>
     </div>

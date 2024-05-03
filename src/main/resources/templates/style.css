@@ -1,0 +1,325 @@
+html * {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif!important;
+}
+
+div.headerlink {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 77px;
+    height: 100%;
+    margin: 0% 3%;
+    justify-content: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    opacity: 40%;
+}
+
+div.headerlink:hover {
+    opacity: 100%;
+    transition: 0.5s ease-in-out;
+}
+
+body {
+    background: rgb(0,245,255);
+    background: radial-gradient(circle, rgba(0,245,255,0.12368697478991597) 50%, rgba(57,64,255,0.13769257703081228) 97%);
+}
+
+header {
+    height: 75px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+    padding: 3px 200px;
+    background: rgb(0,245,255);
+    background: linear-gradient(90deg, rgba(0,245,255,1) 0%, rgba(230,95,254,1) 100%);
+    border-bottom-left-radius: 7%;
+    border-bottom-right-radius: 7%;
+}
+
+header > div > a >span {
+    display: none;
+}
+
+.myprofile {
+    background-image: url("icons/icon-self.png");
+} 
+
+.people {
+    background-image: url("icons/icon-people.png");
+}
+
+.chats {
+    background-image: url("icons/icon-chats.png");
+}
+
+.logout {
+    background-image: url("icons/icon-logout.png");
+}
+
+.logo{
+    background-image: url("icons/logo.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 200px;
+    height: 70px;
+    left: 15px;
+    top: 15px;
+}
+
+.divorlink {
+    width: 100%;
+}
+
+.username {
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 22px;
+    line-height: 100%;
+}
+
+.date {
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    text-align: right;
+    font-style: italic;
+    align-content: bottom;
+    opacity: 70%;
+}
+
+.listitem { 
+    display: flex;
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0px;
+    border-radius: 20px 20px 0px 20px;
+    border: solid rgba(21, 0, 255, 60%) 1px;
+    background-color: rgba(255, 255, 255, 70%);
+}
+
+.listmessages {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    justify-self: center;
+    align-items: center;
+    height: 100%;
+    padding: 5px;
+    margin: auto;
+    max-width: 50%;
+}
+
+.plus {
+    display: block;
+    height: 60px;
+    width: 60px;
+    background-image: url("icons/plus.png");
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 2px auto;
+}
+
+.plus > span {
+    display: none;
+}
+
+.full {
+    width: 50%;
+    margin: 5px auto;
+}
+
+.chatusername {
+    display: block;
+    padding: 10px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: rgba(21, 0, 255, 10%);
+    border : solid rgba(21, 0, 255, 60%) 1px;
+}
+
+.chatusername > span {
+    display: block;
+    text-align: center;
+    font-size: x-large;
+}
+
+.messagelist {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+.fromme{
+    padding: 10px;
+    margin: 5px 5px auto 5px;
+    height: auto;
+    background-color: rgba(0,245,255, 10%);
+    border: solid rgba(0,245,255, 80%) 1px;
+    border-radius: 10px 10px 10px 0px;
+    width: 60%;
+    text-align: justify;
+}
+
+.fromanother {
+    padding: 10px;
+    margin: 5px 5px 5px auto;
+    height: auto;
+    background-color: rgba(230,95,254,10%);
+    border: solid rgba(230,95,254,80%) 1px;
+    border-radius: 10px 10px 0px 10px;
+    width: 60%;
+    text-align: justify;
+}
+
+.messagetext {
+    font-size: medium;
+    text-align: justify;
+}
+
+.formmsg{
+    display: flex;
+}
+
+.textfield {
+    margin: auto;
+    background-color: rgba(255, 255 ,255, 10%);
+    border: solid rgba(0,245,255, 80%) 1px;
+    outline: none;
+    width: 90%;
+    height: 2.5rem;
+    border-radius: 5px;
+}
+
+.button {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: auto;
+    text-decoration: none;
+    border-radius: 50%;
+    outline: none;
+    border: solid rgba(0,245,255, 1) 2px;
+    background-color: rgba(0,245,255, 50%);
+}
+
+.buttoninfo {
+    margin: 20px auto;
+    height: 2.5rem;
+    border-radius: 10px;
+    background-color: rgba(0,245,255, 10%);
+    border: solid rgba(0,245,255, 80%) 2px;
+}
+
+.infoform {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    width: 30%;
+}
+
+.formborder {
+    border: solid rgba(0,245,255, 80%) 2px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 80%;
+    margin-top: 5px!important;
+}
+
+.commentent {
+    width: 100%!important;
+    margin: 10px 0px;
+    padding: 10px 0px;
+    border-radius: 10px;
+}
+
+.commentmsg {
+    display: block;
+    border: solid rgba(0,245,255, 80%) 1px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0px;
+    font-style: oblique;
+    text-align: justify;
+}
+
+form > label {
+    min-width: 30%;
+    text-align: center;
+    ;
+    padding: 5px;
+    margin: 10px auto;
+    background-color: rgba(0,245,255, 10%);
+    border: solid rgba(0,245,255, 80%) 2px;
+    border-radius: 5px;
+    font-style: italic;
+}
+
+.totaldiv {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 20px auto;
+}
+
+.profilehead {
+    width: 100%;
+    margin: 10px auto;
+    height: 100px;
+    background-color: rgba(230,95,254,10%);
+    border: solid rgba(230,95,254,80%) 1px;
+    border-radius: 10px;
+}
+
+.profilerange {
+    margin: 5px auto;
+    width: 50%;
+    accent-color: rgb(0,245,255);
+}
+
+.splitblock {
+    display: inline-block;
+    height: auto;
+    width: 13%;
+    margin: 0px, auto;
+}
+
+.userchat {
+    margin-top: 20px;
+    vertical-align: top;
+    background-image: url("/icons/message.png");
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 100%;
+    background-size: 70%;
+    opacity: 70%;
+}
+
+
+.userchat > span {
+    display: none;
+}
+
+.namepeoplelist {
+    height: 100%;
+}
+
+a:link { 
+    text-decoration: none; 
+} 
+a:visited { 
+    text-decoration: none; 
+} 
+a:hover { 
+    text-decoration: none; 
+} 
+a:active { 
+    text-decoration: none; 
+}

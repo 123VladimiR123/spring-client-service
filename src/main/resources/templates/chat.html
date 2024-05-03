@@ -4,62 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="all.css">
     <title th:text="${requested.getFullName()}"></title>
 </head>
 <body>
+    <div class="logo">
+    </div>
     <header>
-        <div>
-            <a th:href="@{${prefix + '/profile/' + current.getId()}}">
-                <span>Я</span>
-            </a>
-        </div>
-        <div>
-            <a th:href="@{${prefix + '/profile'}}">
-                    <span>
-                        Люди
-                    </span>
-            </a>
-        </div>
-        <div>
-            <a th:href="@{${prefix + '/chat'}}">
-                <span>Чаты</span>
-            </a>
-        </div>
-        <div>
-            <a th:href="@{${prefix + '/logout'}}">
-                <span>Выход</span>
-            </a>
-        </div>
+      <div class="headerlink myprofile">
+        <a th:href="@{${prefix + '/profile/' + current.getId()}}">
+          <span>Я</span>
+        </a>
+      </div>
+      <div class="headerlink people">
+        <a th:href="@{${prefix + '/profile'}}">
+          <span>Люди</span>
+        </a>
+      </div>
+      <div class="headerlink chats">
+        <a th:href="@{${prefix + '/chat'}}">
+          <span>Чаты</span>
+        </a>
+      </div>
+      <div class="headerlink logout">
+        <a th:href="@{${prefix + '/logout'}}">
+          <span>Выход</span>
+        </a>
+      </div>
     </header>
 
-<div>
+<div class="full">
     <div>
-        <a th:href="@{${prefix + '/profile/' + requested.getId()}}">
-            <span th:text="${requested.getFullName()}">
+        <a th:href="@{${prefix + '/profile/' + requested.getId()}}" class="chatusername">
+            <span th:text="${requested.getFullName()}">тест имя пользователя
             </span>
         </a>
     </div>
 
     <div>
-        <a th:href="@{${prefix + '/chat/' + chatId + '?q=' + Integer.toString(query + 20)}}" th:if="${query < page.getTotalElements()}">
+        <a th:href="@{${prefix + '/chat/' + chatId + '?q=' + Integer.toString(query + 20)}}" th:if="${query < page.getTotalElements()}" class="plus">
             <span>
                 Загрузить ещё
             </span>
         </a>
 
-        <ul>
-            <li th:each="msg: ${page.getContent()}">
-                <div th:text="${msg.getMessage()}">
+        <ul class="messagelist">
+            <li th:each="msg: ${page.getContent()}" class="fromme">
+                <div th:text="${msg.getMessage()}" class="messagetext">тест сообщение
                 </div>
-                <span th:text="${msg.getSent()}"></span>
+                <span th:text="${msg.getSent()}" class="date">тестдата</span>
             </li>
         </ul>
     </div>
 
     <div>
-        <form method="post">
-            <input type="text" required minlength="1" maxlength="255" name="message" />
-            <input type="submit"/>
+        <form method="post" class="formmsg">
+            <input type="text" required minlength="1" maxlength="255" name="message" class="textfield msg"/>
+            <input type="submit" value="" class="button"/>
         </form>
     </div>
 </div>
