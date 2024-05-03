@@ -21,6 +21,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("/static/**")
-                .addResourceLocations("/resources/static/");
+                .addResourceLocations("/resources/static/", "/BOOT-INF/classes/static/",
+                        "/resources/", "/BOOT-INF/classes/", "classpath:/static/");
     }
 }
