@@ -100,7 +100,7 @@ public class ChatController {
 
         ModelAndView modelAndView = new ModelAndView("chat");
         Page<MessageEntity> messageEntityPage = messageRepository.findAllByChatId(chatId,
-                PageRequest.of(0, query, Sort.by("sent").ascending()));
+                PageRequest.of(0, query, Sort.by("sent").descending()));
 
 
         modelAndView.addObject("current", current);
